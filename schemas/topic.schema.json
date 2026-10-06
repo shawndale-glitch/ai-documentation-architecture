@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/shawndale-glitch/ai-documentation-architecture/schemas/topic.schema.json",
+  "title": "Documentation topic frontmatter",
+  "description": "Machine-readable metadata required at the top of every topic in the corpus. Cross-file rules (unique IDs, resolvable relations, required sections) are enforced by tooling/validate_corpus.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "title", "summary", "domain", "audience", "status", "owner", "source"],
+  "$defs": {
+    "topicId": {
+      "type": "string",
+      "pattern": "^(concept|procedure|reference|api|event|training|mapping|decision|glossary)(\\.[a-z0-9][a-z0-9-]*)+$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
+  },
+  "properties": {
+    "id": { "$ref": "#/$defs/topicId" },
+    "type": {
+      "enum": ["concept", "procedure", "reference", "api", "event", "training", "mapping", "decision", "glossary"]
+    },
+    "title": { "type": "string", "minLength": 3, "maxLength": 120 },
+    "summary": { "type": "string", "minLength": 20, "maxLength": 300 },
+    "domain": {
+      "enum": ["rental", "customer", "fleet", "billing", "platform", "migration", "documentation"]
+    },
+    "audience": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": ["branch-staff", "trainer", "support", "developer", "integrator", "data-migration", "writer"]
+      }
+    },
+    "status": { "enum": ["draft", "in-review", "validated", "deprecated"] },
+    "owner": { "type": "string", "minLength": 3 },
+    "canonical": { "type": "boolean", "default": true },
+    "source": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["system", "title"],
+        "properties": {
+          "system": {
+            "description": "Kind of source system, for example product-spec, workbook, wiki, tracker, openapi, sme-review.",
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "title": { "type": "string" },
+          "ref": { "type": "string", "description": "Document key, file and sheet, URL, or ticket ID." },
+          "version": { "type": "string" },
+          "retrieved": { "$ref": "#/$defs/date" }
+        }
+      }
+    },
+    "validated_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "date"],
+      "properties": {
+        "role": { "type": "string" },
+        "date": { "$ref": "#/$defs/date" }
+      }
+    },
+    "last_reviewed": { "$ref": "#/$defs/date" },
+    "related": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/topicId" } },
+    "supersedes": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/topicId" } },
+    "superseded_by": { "$ref": "#/$defs/topicId" },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "asset", "alt"],
+      "properties": {
+        "type": { "enum": ["diagram", "screenshot", "animation", "video"] },
+        "asset": { "type": "string" },
+        "describes": { "$ref": "#/$defs/topicId" },
+        "alt": { "type": "string", "minLength": 10 }
+      }
+    },
+    "interface": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "method", "path"],
+          "properties": {
+            "kind": { "const": "http" },
+            "method": { "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"] },
+            "path": { "type": "string", "pattern": "^/" },
+            "operation_id": { "type": "string" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "name", "version"],
+          "properties": {
+            "kind": { "const": "event" },
+            "name": { "type": "string", "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+)+$" },
+            "version": { "type": "integer", "minimum": 1 },
+            "producer": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "tags": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "validated" } } },
+      "then": { "required": ["validated_by"] }
+    },
+    {
+      "if": { "properties": { "status": { "const": "deprecated" } } },
+      "then": { "required": ["superseded_by"] }
+    },
+    {
+      "if": { "properties": { "type": { "enum": ["api", "event"] } } },
+      "then": { "required": ["interface"] }
+    }
+  ]
+}

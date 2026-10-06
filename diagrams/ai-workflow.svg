@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-labelledby="title desc" font-family="Arial, Helvetica, sans-serif">
+  <title id="title">AI-assisted documentation workflow</title>
+  <desc id="desc">Top row, left to right: an author with source material works with an AI assistant, which produces structured content; the content passes validation and then a Git pull request with human review. Bottom row, right to left: the reviewed content joins the documentation corpus, a RAG system or agent retrieves from it to produce an answer, and the answer carries provenance back through the chunk and topic to the canonical source.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8C959F"/>
+    </marker>
+  </defs>
+  <rect width="960" height="340" fill="#FFFFFF"/>
+
+  <text x="20" y="30" font-size="12" font-weight="bold" fill="#59636E" letter-spacing="1">AUTHORING</text>
+  <g>
+    <rect x="20" y="44" width="160" height="72" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="100" y="74" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Author</text>
+    <text x="100" y="94" font-size="12" fill="#59636E" text-anchor="middle">+ authorized sources</text>
+
+    <rect x="210" y="44" width="160" height="72" fill="#FFFFFF" stroke="#0969DA"/>
+    <text x="290" y="74" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">AI assistant</text>
+    <text x="290" y="94" font-size="12" fill="#59636E" text-anchor="middle">agent definition</text>
+
+    <rect x="400" y="44" width="160" height="72" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="480" y="74" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Structured content</text>
+    <text x="480" y="94" font-size="12" fill="#59636E" text-anchor="middle">typed topic + metadata</text>
+
+    <rect x="590" y="44" width="160" height="72" fill="#FFFFFF" stroke="#0969DA" stroke-width="2"/>
+    <text x="670" y="74" font-size="14" font-weight="bold" fill="#0969DA" text-anchor="middle">Validation</text>
+    <text x="670" y="94" font-size="12" fill="#59636E" text-anchor="middle">CI gate</text>
+
+    <rect x="780" y="44" width="160" height="72" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="860" y="74" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Pull request</text>
+    <text x="860" y="94" font-size="12" fill="#59636E" text-anchor="middle">human + SME review</text>
+  </g>
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M180 80 H206"/><path d="M370 80 H396"/><path d="M560 80 H586"/><path d="M750 80 H776"/>
+    <path d="M860 116 V198"/>
+  </g>
+
+  <text x="20" y="180" font-size="12" font-weight="bold" fill="#59636E" letter-spacing="1">ANSWERING</text>
+  <g>
+    <rect x="780" y="200" width="160" height="72" fill="#DDF4FF" stroke="#0969DA"/>
+    <text x="860" y="230" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Corpus</text>
+    <text x="860" y="250" font-size="12" fill="#59636E" text-anchor="middle">site + chunks + graph</text>
+
+    <rect x="590" y="200" width="160" height="72" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="670" y="230" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">RAG / agent</text>
+    <text x="670" y="250" font-size="12" fill="#59636E" text-anchor="middle">filter · rank · expand</text>
+
+    <rect x="400" y="200" width="160" height="72" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="480" y="230" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Answer</text>
+    <text x="480" y="250" font-size="12" fill="#59636E" text-anchor="middle">with status and citation</text>
+
+    <rect x="20" y="200" width="350" height="72" fill="#FFFFFF" stroke="#D0D7DE" stroke-dasharray="5 4"/>
+    <text x="195" y="230" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Provenance</text>
+    <text x="195" y="250" font-size="12" fill="#59636E" text-anchor="middle">answer → chunk → topic → canonical source</text>
+  </g>
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M780 236 H754"/><path d="M590 236 H564"/><path d="M400 236 H374"/>
+  </g>
+  <text x="480" y="318" font-size="12" fill="#59636E" text-anchor="middle">AI drafts and checks. People decide what becomes canonical. Nothing publishes without review.</text>
+</svg>

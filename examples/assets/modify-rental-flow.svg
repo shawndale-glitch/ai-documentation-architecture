@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 200" role="img" aria-labelledby="t d" font-family="Arial, Helvetica, sans-serif">
+  <title id="t">Change a rental agreement: five steps</title>
+  <desc id="d">Find the agreement, open it and select Change agreement, change the end date or swap a unit, review the price difference, confirm the change.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8C959F"/></marker></defs>
+  <rect width="960" height="200" fill="#FFFFFF"/>
+  <g font-size="13" fill="#1F2328">
+    <g>
+      <rect x="20" y="60" width="160" height="80" fill="#F6F8FA" stroke="#D0D7DE"/>
+      <text x="36" y="88" font-weight="bold" fill="#0969DA">1</text>
+      <text x="36" y="110">Search the</text>
+      <text x="36" y="128">agreement number</text>
+    </g>
+    <g>
+      <rect x="208" y="60" width="160" height="80" fill="#F6F8FA" stroke="#D0D7DE"/>
+      <text x="224" y="88" font-weight="bold" fill="#0969DA">2</text>
+      <text x="224" y="110">Open it, select</text>
+      <text x="224" y="128">Change agreement</text>
+    </g>
+    <g>
+      <rect x="396" y="60" width="160" height="80" fill="#F6F8FA" stroke="#D0D7DE"/>
+      <text x="412" y="88" font-weight="bold" fill="#0969DA">3</text>
+      <text x="412" y="110">Change end date</text>
+      <text x="412" y="128">or swap a unit</text>
+    </g>
+    <g>
+      <rect x="584" y="60" width="160" height="80" fill="#F6F8FA" stroke="#D0D7DE"/>
+      <text x="600" y="88" font-weight="bold" fill="#0969DA">4</text>
+      <text x="600" y="110">Review the</text>
+      <text x="600" y="128">Price difference</text>
+    </g>
+    <g>
+      <rect x="772" y="60" width="168" height="80" fill="#FFFFFF" stroke="#0969DA"/>
+      <text x="788" y="88" font-weight="bold" fill="#0969DA">5</text>
+      <text x="788" y="110">Confirm change</text>
+      <text x="788" y="128">(approval if price up)</text>
+    </g>
+  </g>
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M180 100 H204"/><path d="M368 100 H392"/><path d="M556 100 H580"/><path d="M744 100 H768"/>
+  </g>
+  <text x="20" y="36" font-size="15" font-weight="bold" fill="#1F2328">Change the dates or items on a rental agreement</text>
+  <text x="20" y="176" font-size="12" fill="#59636E">Result: new revision · updated confirmation emailed · rental.agreement.updated emitted</text>
+</svg>

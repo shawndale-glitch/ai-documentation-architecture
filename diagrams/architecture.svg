@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" role="img" aria-labelledby="title desc" font-family="Arial, Helvetica, sans-serif">
+  <title id="title">AI-native documentation architecture</title>
+  <desc id="desc">Source systems feed three intake paths (workbook import, AI import agent, media capture) into canonical content in a Git repository. Canonical content is structured by metadata, relations, and provenance, passes a validation gate in CI, and becomes one documentation corpus that serves human readers through a site, a search index, and AI, RAG, and agent consumers through chunks and a relationship graph.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8C959F"/>
+    </marker>
+  </defs>
+  <rect width="960" height="660" fill="#FFFFFF"/>
+
+  <!-- Sources -->
+  <rect x="40" y="20" width="880" height="72" fill="#F6F8FA" stroke="#D0D7DE"/>
+  <text x="56" y="42" font-size="12" font-weight="bold" fill="#59636E" letter-spacing="1">SOURCE SYSTEMS</text>
+  <g font-size="13" fill="#1F2328" text-anchor="middle">
+    <text x="130" y="72">Mapping workbooks</text>
+    <text x="305" y="72">API / event specs</text>
+    <text x="480" y="72">Docs and wikis</text>
+    <text x="655" y="72">Trackers and boards</text>
+    <text x="830" y="72">Design boards</text>
+  </g>
+
+  <!-- Intake -->
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <path d="M190 92 V126"/><path d="M480 92 V126"/><path d="M770 92 V126"/>
+  </g>
+  <g>
+    <rect x="60" y="128" width="260" height="58" fill="#FFFFFF" stroke="#D0D7DE"/>
+    <text x="190" y="152" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Workbook import</text>
+    <text x="190" y="172" font-size="12" fill="#59636E" text-anchor="middle">generated tables, never hand-edited</text>
+    <rect x="350" y="128" width="260" height="58" fill="#FFFFFF" stroke="#D0D7DE"/>
+    <text x="480" y="152" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">AI import agent</text>
+    <text x="480" y="172" font-size="12" fill="#59636E" text-anchor="middle">guardrailed drafts, TBC not guesses</text>
+    <rect x="640" y="128" width="260" height="58" fill="#FFFFFF" stroke="#D0D7DE"/>
+    <text x="770" y="152" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Media capture</text>
+    <text x="770" y="172" font-size="12" fill="#59636E" text-anchor="middle">Playwright, stable _latest paths</text>
+  </g>
+
+  <!-- Canonical content -->
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <path d="M190 186 V204 H400 V218"/><path d="M480 186 V218"/><path d="M770 186 V204 H560 V218"/>
+  </g>
+  <rect x="160" y="220" width="640" height="62" fill="#DDF4FF" stroke="#0969DA"/>
+  <text x="480" y="246" font-size="15" font-weight="bold" fill="#1F2328" text-anchor="middle">CANONICAL CONTENT · Git repository</text>
+  <text x="480" y="268" font-size="12" fill="#1F2328" text-anchor="middle">typed topics from templates · one home per fact · reviewed pull requests</text>
+
+  <!-- Metadata / Relations / Provenance -->
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <path d="M300 282 V298 H220 V312"/><path d="M480 282 V312"/><path d="M660 282 V298 H740 V312"/>
+  </g>
+  <g>
+    <rect x="110" y="314" width="220" height="58" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="220" y="338" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Metadata</text>
+    <text x="220" y="358" font-size="12" fill="#59636E" text-anchor="middle">id · type · audience · status</text>
+    <rect x="370" y="314" width="220" height="58" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="480" y="338" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Relations</text>
+    <text x="480" y="358" font-size="12" fill="#59636E" text-anchor="middle">related · supersedes · describes</text>
+    <rect x="630" y="314" width="220" height="58" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="740" y="338" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Provenance</text>
+    <text x="740" y="358" font-size="12" fill="#59636E" text-anchor="middle">sources · validated_by · D-nnn</text>
+  </g>
+
+  <!-- Gate -->
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <path d="M220 372 V388 H380 V402"/><path d="M480 372 V402"/><path d="M740 372 V388 H580 V402"/>
+  </g>
+  <rect x="280" y="404" width="400" height="56" fill="#FFFFFF" stroke="#0969DA" stroke-width="2"/>
+  <text x="480" y="428" font-size="14" font-weight="bold" fill="#0969DA" text-anchor="middle">VALIDATION GATE (CI)</text>
+  <text x="480" y="448" font-size="12" fill="#59636E" text-anchor="middle">schema · relations · sections · status · links · strict build</text>
+
+  <!-- Corpus -->
+  <path d="M480 460 V484" stroke="#8C959F" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="280" y="486" width="400" height="46" fill="#DDF4FF" stroke="#0969DA"/>
+  <text x="480" y="514" font-size="15" font-weight="bold" fill="#1F2328" text-anchor="middle">DOCUMENTATION CORPUS</text>
+
+  <!-- Consumers -->
+  <g stroke="#8C959F" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <path d="M380 532 V550 H220 V566"/><path d="M480 532 V566"/><path d="M580 532 V550 H740 V566"/>
+  </g>
+  <g>
+    <rect x="110" y="568" width="220" height="62" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="220" y="594" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Human reader</text>
+    <text x="220" y="614" font-size="12" fill="#59636E" text-anchor="middle">published site, DRAFT and TBC visible</text>
+    <rect x="370" y="568" width="220" height="62" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="480" y="594" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">Search index</text>
+    <text x="480" y="614" font-size="12" fill="#59636E" text-anchor="middle">full text + metadata filters</text>
+    <rect x="630" y="568" width="220" height="62" fill="#F6F8FA" stroke="#D0D7DE"/>
+    <text x="740" y="594" font-size="14" font-weight="bold" fill="#1F2328" text-anchor="middle">AI / RAG / agents</text>
+    <text x="740" y="614" font-size="12" fill="#59636E" text-anchor="middle">chunks.jsonl · graph.json · citations</text>
+  </g>
+</svg>
