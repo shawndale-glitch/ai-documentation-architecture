@@ -90,7 +90,7 @@ Filtering only works if values are predictable. These fields accept a fixed list
 
 | Field | Values |
 |---|---|
-| `type` | `concept`, `procedure`, `reference`, `api`, `event`, `training`, `mapping`, `decision`, `glossary` |
+| `type` | `concept`, `procedure`, `reference`, `api`, `event`, `training`, `mapping`, `decision`, `glossary`, `quickstart` |
 | `domain` | `rental`, `customer`, `fleet`, `billing`, `platform`, `migration`, `documentation` |
 | `audience` | `branch-staff`, `trainer`, `support`, `developer`, `integrator`, `data-migration`, `writer` |
 | `status` | `draft`, `in-review`, `validated`, `deprecated` |

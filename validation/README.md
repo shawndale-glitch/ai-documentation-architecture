@@ -18,6 +18,9 @@ Each rule exists to protect a specific consumer: the human reader, the search in
 | `status` | `draft` shows a DRAFT notice; `in-review` and `validated` contain no `TBC`; `validated` has no DRAFT notice | Unconfirmed facts presented as confirmed |
 | `visual` | `visual.asset` exists | Visual metadata that points at nothing |
 | `links` | Relative Markdown links and images resolve | Broken navigation for readers |
+| `bound` | Every `python` code block is bound to a tested sample by a `<!-- snippet: -->` comment ([`check_snippets.py`](../tooling/check_snippets.py)) | Code on the page that no test ever ran |
+| `drift` | Each bound block is identical to its sample region | A sample fixed in code but not on the page, or the reverse |
+| `output` | Output shown under `<!-- output-of: -->` is exactly what the sample prints against the mock ([`test_samples.py`](../sdk/python/tests/test_samples.py)) | Example output that the code no longer produces |
 
 In the private implementation, the strict site build adds: every page is in navigation, every in-site anchor exists, and no absolute internal links.
 
@@ -26,6 +29,8 @@ In the private implementation, the strict site build adds: every page is in navi
 ```bash
 python tooling/validate_corpus.py examples
 ```
+
+Code blocks are checked by `python tooling/check_snippets.py examples` and `python -m pytest sdk/python/tests tooling/tests`; see [snippet drift check](../tooling/README.md#snippet-drift-check).
 
 Exit code `0` means every topic passed; `1` means at least one failed, with the file and rule named for each failure. CI uses the exit code; see [`.github/workflows/validate.yml`](../.github/workflows/validate.yml).
 

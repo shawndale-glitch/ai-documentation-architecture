@@ -52,6 +52,14 @@ Open the [agent definition](agents/documentation-import.agent.md) and the [AI-as
 - Guardrails are configuration: no invented facts, `TBC` instead of guessing, contradictions reported not resolved, provenance always recorded, no publishing without a person.
 - The model does the mechanical work; a person decides what becomes canonical.
 
+## 7. Developer docs as tested code (3 min, for developer-docs roles)
+
+Open the [Python SDK quickstart](examples/sdk-quickstart-python.md), then one [sample file](sdk/samples/python/handle_conflict.py).
+
+- Every code block is a region of a sample file. CI runs every sample against the [mock API](sdk/mock/server.py) on the oldest and newest supported Python, and fails if the page's code or shown output differs from what really runs.
+- Break it live: change one line in a sample, run `python tooling/check_snippets.py examples`, show the drift failure, then `--fix`.
+- The [review skill](.claude/skills/review-sdk-docs/SKILL.md) is the AI editor: it runs those checks, then reviews what tooling can't (claims without a source, identifier misuse, missing error paths) and cites a line for every finding. A person still approves.
+
 ## Questions I expect
 
 | Question | Short answer |

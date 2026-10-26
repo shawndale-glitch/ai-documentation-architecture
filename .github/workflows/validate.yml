@@ -27,8 +27,30 @@ jobs:
       - name: Validate topics and export retrieval artifacts
         run: python tooling/validate_corpus.py examples --export build
 
+      - name: Check code blocks match their tested samples
+        run: python tooling/check_snippets.py examples
+
       - name: Upload retrieval artifacts
         uses: actions/upload-artifact@v4
         with:
           name: retrieval-artifacts
           path: build/
+
+  sdk-samples:
+    name: SDK and samples (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.13"]   # the oldest version the quickstart supports, and the newest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install the SDK the way the quickstart does
+        run: pip install ./sdk/python pytest
+
+      - name: Run SDK tests, every sample, and compare documented output
+        run: python -m pytest sdk/python/tests tooling/tests -v

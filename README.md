@@ -28,6 +28,7 @@ Rather than treating documentation as a collection of pages, this architecture t
 - Content validation and quality controls in CI
 - Human-readable and machine-readable representations of the same content
 - Developer and end-user documentation within one content model
+- SDK documentation as tested code: a [Python SDK quickstart](examples/sdk-quickstart-python.md) whose every code block is a CI-tested sample, with a drift check and an AI review skill
 
 ## Architecture
 
@@ -134,6 +135,18 @@ Output:
 
 CI runs the same command on every pull request. See [validation](validation/README.md).
 
+### The SDK quickstart
+
+The [Python SDK quickstart](examples/sdk-quickstart-python.md) runs against a local mock of the Waypoint API, so you need no account:
+
+```bash
+pip install ./sdk/python pytest
+python tooling/check_snippets.py examples      # code blocks match their samples
+python -m pytest sdk/python/tests tooling/tests  # samples run; documented output is real
+```
+
+See [`sdk/`](sdk/README.md) for how the SDK, the mock, the samples, and the page fit together.
+
 ## Repository map
 
 ```text
@@ -146,10 +159,12 @@ CI runs the same command on every pull request. See [validation](validation/READ
 ├── schemas/                  # JSON Schema for topic frontmatter
 ├── governance/               # style guide and status rules
 ├── agents/                   # AI import-agent definition (guardrails as configuration)
-├── tooling/                  # validator + retrieval export; description of the wider toolkit
+├── .claude/skills/           # AI review skill for SDK and API docs
+├── sdk/                      # Python SDK, local mock API, and the tested samples the quickstart shows
+├── tooling/                  # validator, snippet drift check, retrieval export; the wider toolkit
 ├── validation/               # every rule the gate enforces, and why
 ├── diagrams/                 # architecture diagrams (SVG)
-└── .github/workflows/        # CI: validate the corpus on every PR
+└── .github/workflows/        # CI: validate the corpus, check snippets, run the samples on every PR
 ```
 
 ## Technology and tooling
@@ -162,6 +177,8 @@ CI runs the same command on every pull request. See [validation](validation/READ
 - Playwright for automated capture of design boards and UI screenshots (private implementation)
 - GitHub Actions for CI/CD
 - Claude Code and agent definitions for AI-assisted authoring, with MCP-oriented tooling
+- Claude Code skills as editorial checks ([`review-sdk-docs`](.claude/skills/review-sdk-docs/SKILL.md))
+- pytest for SDK tests and executable code samples
 - Mermaid and SVG for diffable diagrams
 
 ## Project status
