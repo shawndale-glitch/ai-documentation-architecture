@@ -49,6 +49,8 @@ REQUIRED_SECTIONS = {
                 "Identifiers", "Gaps and decisions", "Related topics"],
     "decision": ["Decisions", "Gaps", "Related topics"],
     "glossary": ["Definitions", "Rules", "Related topics"],
+    "quickstart": ["Before you begin", "Install the SDK", "Check your setup", "Make your first call",
+                   "Handle errors", "Related topics"],
 }
 
 # Sections that are navigation, not content: their meaning is already in `related`.

@@ -17,6 +17,7 @@ Every topic declares exactly one type. One topic answers one kind of question. M
 | `mapping` | Where does legacy data X end up in the new system? | Summary · Relationship · Field mapping · Transformation rules · Code lookups · Identifiers · Gaps and decisions | [mapping](../templates/mapping.md) |
 | `decision` | What was decided, by whom, and why? | Numbered entries: Context · Decision · Consequences | [example](../examples/decision-log.md) |
 | `glossary` | Which term means what, exactly? | Definitions table · Rules | [example](../examples/glossary.md) |
+| `quickstart` | How do I make my first working calls with the SDK? | Before you begin · Install the SDK · Check your setup · Make your first call · Handle errors | [example](../examples/sdk-quickstart-python.md) |
 
 The type is in the frontmatter **and** the ID prefix (`procedure.rental.modify`). The validator rejects a mismatch.
 

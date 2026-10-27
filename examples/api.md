@@ -30,6 +30,7 @@ related:
   - procedure.rental.modify
   - event.rental.updated
   - glossary.identifiers
+  - quickstart.rental.python-sdk
 tags: [rentals-api]
 ---
 # Update a rental agreement (API)
@@ -97,3 +98,4 @@ Content-Type: application/merge-patch+json
 - [Change the dates or items on a rental agreement](procedure.md)
 - [Rental agreement updated (event)](event.md)
 - [Identifier glossary](glossary.md)
+- [Change a rental agreement with the Python SDK](sdk-quickstart-python.md)

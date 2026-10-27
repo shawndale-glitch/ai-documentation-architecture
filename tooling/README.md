@@ -5,6 +5,8 @@ The architecture only holds if the rules are cheap to follow and impossible to s
 | Tool | Job | In this repository |
 |---|---|---|
 | [Corpus validator and retrieval export](#corpus-validator-and-retrieval-export) | Enforce the metadata and content rules; produce chunks and a graph | Included, runnable |
+| [Snippet drift check](#snippet-drift-check) | Keep every code block identical to a tested sample | Included, runnable |
+| [AI review skill](#ai-review-skill) | Review SDK and API docs as an editor would, after the mechanical checks | [Included](../.claude/skills/review-sdk-docs/SKILL.md) |
 | [Strict site build](#strict-site-build-and-publishing) | Fail on broken links or pages missing from navigation; publish | Described |
 | [Media capture toolkit](#media-capture-toolkit) | Regenerate visuals from design boards and live UIs | Described |
 | [Workbook import](#workbook-import) | Generate mapping tables from their system of record | Described |
@@ -47,6 +49,28 @@ FAIL examples/procedure.md                procedure.rental.modify [validated]
 ```
 
 The export writes `chunks.jsonl` and `graph.json`, described in the [retrieval model](../architecture/retrieval-model.md).
+
+## Snippet drift check
+
+[`check_snippets.py`](check_snippets.py) keeps code on the page and code in CI the same code. A block is bound to a region of a sample file by the comment before it:
+
+````markdown
+<!-- snippet: ../sdk/samples/python/get_rental.py#get_rental -->
+```python
+...
+```
+````
+
+```bash
+python tooling/check_snippets.py examples         # check
+python tooling/check_snippets.py examples --fix   # copy drifted regions into the pages
+```
+
+It fails when a `python` block has no snippet comment (`bound`), when the sample or region is missing (`region`), or when the block differs from the region (`drift`). The [SDK tests](../sdk/python/tests/test_samples.py) then run every sample against the [mock API](../sdk/mock/server.py) and compare its output with the block under each `<!-- output-of: -->` comment. See [`sdk/`](../sdk/README.md) for the whole loop.
+
+## AI review skill
+
+[`review-sdk-docs`](../.claude/skills/review-sdk-docs/SKILL.md) is a Claude Code skill that engineers run on a docs change before a writer reviews it. It runs the validator, the drift check, and the tests first, then reviews what tooling can't: API claims with no source, identifiers used as the wrong type, error paths missing from the samples or the errors table, unsafe retries, secrets in code. Every finding cites `path:line` and its evidence; anything it can't support becomes an open question. It never changes `status` or removes `TBC`.
 
 ## Strict site build and publishing
 

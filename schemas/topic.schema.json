@@ -9,7 +9,7 @@
   "$defs": {
     "topicId": {
       "type": "string",
-      "pattern": "^(concept|procedure|reference|api|event|training|mapping|decision|glossary)(\\.[a-z0-9][a-z0-9-]*)+$"
+      "pattern": "^(concept|procedure|reference|api|event|training|mapping|decision|glossary|quickstart)(\\.[a-z0-9][a-z0-9-]*)+$"
     },
     "date": {
       "type": "string",
@@ -20,7 +20,7 @@
   "properties": {
     "id": { "$ref": "#/$defs/topicId" },
     "type": {
-      "enum": ["concept", "procedure", "reference", "api", "event", "training", "mapping", "decision", "glossary"]
+      "enum": ["concept", "procedure", "reference", "api", "event", "training", "mapping", "decision", "glossary", "quickstart"]
     },
     "title": { "type": "string", "minLength": 3, "maxLength": 120 },
     "summary": { "type": "string", "minLength": 20, "maxLength": 300 },
